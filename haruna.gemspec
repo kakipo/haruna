@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Haruna::VERSION
   spec.authors       = ["kakipo"]
   spec.email         = ["kakipo@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Write a gem description}
+  spec.summary       = %q{Write a gem summary}
+  spec.homepage      = "https://github.com/kakipo/haruna"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
