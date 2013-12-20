@@ -36,8 +36,14 @@ Or install it yourself as:
 | token         | Your API token |            |
 | ship_id       | Ship's id      | 1 ~        |
 | deck_id       | Deck's id      | 1 ~ 4      |
-| kind          | Refill mode - 1: fuel, 2: bullets, 3: fuel + bullets      | 1 ~ 3 |
+| kind          | Refill mode - 1: oil, 2: bullets, 3: oil + bullets      | 1 ~ 3 |
 
+
+## Disclaimer
+
+This software library ("gem") is provided by kakipo "as is" and "with all faults." kakipo makes no representations or warranties of any kind concerning the safety, suitability, inaccuracies, typographical errors, or other harmful components of this gem. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this gem is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and kakipo will not be liable for any damages you may suffer in connection with using, modifying, or distributing this gem.
+
+Plus, please read and respect [the official terms of use](http://www.dmm.co.jp/rule/=/category=onlinegame_service/).
 
 ## Contributing
 
