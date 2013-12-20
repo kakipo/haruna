@@ -58,7 +58,106 @@ describe Haruna::Client do
       end
     end
 
+  end
 
+  describe "validators" do
+    before do
+      @client = Haruna::Client.new("abcdefg")
+    end
+
+    describe "#validate_deck_id" do
+      subject{ @client.validate_deck_id(deck_id) }
+      context "when deck_id is TOO SMALL" do
+        let(:deck_id) { 0 }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when deck_id is MIN" do
+        let(:deck_id) { 1 }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+      context "when deck_id is TOO BIG" do
+        let(:deck_id) { 5 }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when deck_id is MAX" do
+        let(:deck_id) { 4 }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+    end
+
+    describe "#validate_mission_id" do
+      subject{ @client.validate_mission_id(mission_id) }
+      context "when mission_id is TOO SMALL" do
+        let(:mission_id) { 0 }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when mission_id is MIN" do
+        let(:mission_id) { 1 }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+    end
+
+    describe "#validate_kind" do
+      subject{ @client.validate_supply_kind(kind) }
+      context "when kind is TOO SMALL" do
+        let(:kind) { 0 }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when kind is MIN" do
+        let(:kind) { 1 }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+      context "when kind is TOO BIG" do
+        let(:kind) { 4 }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when kind is MAX" do
+        let(:kind) { 3 }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+    end
+
+    describe "#validate_ship_ids" do
+      subject{ @client.validate_ship_ids(id_arr) }
+      context "when id_arr is empty" do
+        let(:id_arr) { [] }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+      context "when id_arr is VALID" do
+        let(:id_arr) { [1, 2, 3] }
+        it "should not raise error" do
+          expect{ subject }.not_to raise_error
+        end
+      end
+      context "when id_arr contains INVALID id" do
+        let(:id_arr) { [1, 2, 0, 3] }
+        it "should raise error" do
+          expect{ subject }.to raise_error(ArgumentError)
+        end
+      end
+    end
 
   end
 
