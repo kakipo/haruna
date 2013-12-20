@@ -22,51 +22,51 @@ describe Haruna::Client do
       @client.conn = create_stub_connection # overwrite faraday adapter
     end
 
-    describe "#go_mission" do
+    describe "#req_mission_start" do
       context "w/o parameters" do
         it "should raise an error" do
-          expect{ @client.go_mission }.to raise_error(ArgumentError)
+          expect{ @client.req_mission_start }.to raise_error(ArgumentError)
         end
       end
       context "w/ two parameters" do
-        subject { @client.go_mission(1, 1) }
+        subject { @client.req_mission_start(1, 1) }
         its(:body) { should eq "ok" }
       end
     end
 
-    describe "#get_mission_result" do
+    describe "#req_mission_result" do
       context "w/o parameters" do
         it "should raise an error" do
-          expect{ @client.get_mission_result }.to raise_error(ArgumentError)
+          expect{ @client.req_mission_result }.to raise_error(ArgumentError)
         end
       end
       context "w/ two parameters" do
-        subject { @client.get_mission_result(1) }
+        subject { @client.req_mission_result(1) }
         its(:body) { should eq "ok" }
       end
     end
 
-    describe "#get_deck_port" do
+    describe "#req_hokyu_charge" do
       context "w/o parameters" do
-        subject { @client.get_deck_port }
+        it "should raise an error" do
+          expect{ @client.req_hokyu_charge }.to raise_error(ArgumentError)
+        end
+      end
+      context "w/ two parameters" do
+        subject { @client.req_hokyu_charge(1, [1,2,3]) }
+        its(:body) { should eq "ok" }
+      end
+    end
+
+    describe "#get_member_deck_port" do
+      context "w/o parameters" do
+        subject { @client.get_member_deck_port }
         its(:body) { should eq "ok" }
       end
       context "w/ a parameter" do
         it "should raise an error" do
-          expect{ @client.get_deck_port(1) }.to raise_error(ArgumentError)
+          expect{ @client.get_member_deck_port(1) }.to raise_error(ArgumentError)
         end
-      end
-    end
-
-    describe "#supply_material" do
-      context "w/o parameters" do
-        it "should raise an error" do
-          expect{ @client.supply_material }.to raise_error(ArgumentError)
-        end
-      end
-      context "w/ two parameters" do
-        subject { @client.supply_material(1, [1,2,3]) }
-        its(:body) { should eq "ok" }
       end
     end
 
