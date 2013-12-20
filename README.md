@@ -33,9 +33,10 @@ Or install it yourself as:
 
 | Param         | Description    | Constraint |
 | ------------- | -------------- | ---------- |
-| ship_id       | ship's id      | 1~         |
-| deck_id       | deck's id      | 1~4        |
-| kind          | refill mode - 1: fuel, 2: bullets, 3: fuel + bullets      |  1~3 |
+| token         | Your API token |            |
+| ship_id       | Ship's id      | 1 ~        |
+| deck_id       | Deck's id      | 1 ~ 4      |
+| kind          | Refill mode - 1: fuel, 2: bullets, 3: fuel + bullets      | 1 ~ 3 |
 
 
 ## Contributing
