@@ -2,8 +2,8 @@ module Haruna
 
   class Client < API
 
-    def initialize(token)
-      super token
+    def initialize(token, proxy=nil)
+      super(token, proxy)
     end
 
     def req_mission_start(deck_id, mission_id)
