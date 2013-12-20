@@ -2,12 +2,7 @@
 require 'rubygems'
 require 'haruna'
 
-def gunma
-  "は群馬県になりました。"
-end
-
 def create_stub_connection
-  # It's possible to define stubbed request outside a test adapter block.
   stubs = Faraday::Adapter::Test::Stubs.new do |stub|
     # stub.post(url) { [status_code, response_header, response_body] }
     stub.post('/kcsapi/get_seafood/tamago') {[ 200, {}, 'egg' ]}
