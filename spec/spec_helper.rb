@@ -17,6 +17,7 @@ def create_stub_connection
     stub.post('/kcsapi/api_req_mission/start') {[ 200, {}, 'ok' ]}
     stub.post('/kcsapi/api_req_mission/result') {[ 200, {}, 'ok' ]}
     stub.post('/kcsapi/api_req_hokyu/charge') {[ 200, {}, 'ok' ]}
+    stub.post('/kcsapi/api_get_member/deck_port') {[ 200, {}, 'ok' ]}
 
   end
 

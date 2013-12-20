@@ -17,6 +17,10 @@ module Haruna
       call("api_req_mission", "result", api_deck_id: deck_id)
     end
 
+    def get_deck_port
+      call("api_get_member", "deck_port")
+    end
+
     # kind
     #   1: oil?
     #   2: bullet?

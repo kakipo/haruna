@@ -46,6 +46,18 @@ describe Haruna::Client do
       end
     end
 
+    describe "#get_deck_port" do
+      context "w/o parameters" do
+        subject { @client.get_deck_port }
+        its(:body) { should eq "ok" }
+      end
+      context "w/ a parameter" do
+        it "should raise an error" do
+          expect{ @client.get_deck_port(1) }.to raise_error(ArgumentError)
+        end
+      end
+    end
+
     describe "#supply_material" do
       context "w/o parameters" do
         it "should raise an error" do
