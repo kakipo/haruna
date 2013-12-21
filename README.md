@@ -1,6 +1,7 @@
 # Haruna
 
 [![Gem Version](https://badge.fury.io/rb/haruna.png)](http://badge.fury.io/rb/haruna)
+[![Build Status](https://travis-ci.org/kakipo/haruna.png?branch=master)](https://travis-ci.org/kakipo/haruna)
 
 A Ruby interface to the 艦これ API.
 
