@@ -40,7 +40,7 @@ client.req_hokyu_charge(kind, ship_id_arr)
 | ------------- | -------------- | ------------------------------------------ | ---------- |
 | token         | Your API token | "835d2a8f2ca5fea2463248cc6910af96880fc29e" |            |
 | end_point     | API endpoint   | "http://125.6.189.215"                     |            |
-| ship_id       | Ship's id      | 35                                         | 1          |
+| ship_id       | Ship's id      | 35                                         | > 0        |
 | deck_id       | Deck's id      | 3                                          | 1 ~ 4      |
 | kind          | Refill mode - 1: fuel, 2: bullets, 3: fuel + bullets  | 3   | 1 ~ 3      |
 
