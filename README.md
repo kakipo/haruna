@@ -1,5 +1,7 @@
 # Haruna
 
+[![Gem Version](https://badge.fury.io/rb/haruna.png)](http://badge.fury.io/rb/haruna)
+
 A Ruby interface to the 艦これ API.
 
 ## Installation
