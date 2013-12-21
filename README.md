@@ -57,7 +57,7 @@ client.user_agent = "Foo Bar"
 
 | Option         | Description       | Default                              | 
 | -------------- | ----------------- | ------------------------------------ | 
-| :proxy         | proxy server path | nil                                  | 
+| :proxy         | Proxy server URL  | nil                                  | 
 | :api_ver       | API version       | 1                                    | 
 | :user_agent    | User Agent        |  "Mozilla/5.0 (M..."                 | 
 | :referer       | Referer           |  "/kcs/port.swf?version=1.5.5"       | 
