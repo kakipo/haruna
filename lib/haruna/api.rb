@@ -1,42 +1,52 @@
 module Haruna
 
   class API
-    # config req header
-    API_VER         = 1
-    END_POINT       = 'http://125.6.189.215'
-    USER_AGENT      = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36'
-    REFERER = 'http://125.6.189.215/kcs/port.swf?version=1.5.5'
-    ACCEPT_ENCODING = 'gzip,deflate,sdch'
-    ACCEPT_LANGUAGE = 'ja,en-US;q=0.8,en;q=0.6'
-    CONTENT_TYPE    = 'application/x-www-form-urlencoded'
+    attr_writer :conn # for testing, not really need to rewrite this
+    attr_accessor :proxy, :api_ver, :user_agent, :referer, :accept_enc, :accept_lang, :content_type
 
-    def initialize(token, proxy=nil)
+    DEFAULT_OPTS = {
+      proxy:          nil,
+      api_ver:        1,
+      user_agent:     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36',
+      referer:        '/kcs/port.swf?version=1.5.5', # 'http://125.6.189.215/kcs/port.swf?version=1.5.5'
+      accept_enc:     'gzip,deflate,sdch',
+      accept_lang:    'ja,en-US;q=0.8,en;q=0.6',
+      content_type:   'application/x-www-form-urlencoded'
+    }
+
+    def initialize(token, end_point, opts={})
       require 'faraday'
       @token = token
+      @end_point = end_point
 
-      @conn = Faraday.new(:url => END_POINT, :proxy => proxy) do |faraday|
+      self.setup(opts || {})
+
+      @conn = Faraday.new(:url => @end_point, :proxy => @proxy) do |faraday|
         faraday.request  :url_encoded
         # faraday.response :logger
         faraday.adapter  Faraday.default_adapter
       end
     end
 
-    attr_writer :conn # for testing, not really need to rewrite
-
     def call(action, target, param={})
       @conn.post do |req|
         req.url "/kcsapi/#{action}/#{target}"
-        req.headers['User-Agent']       = USER_AGENT
-        req.headers['Referer']          = REFERER
-        req.headers['Accept-Encoding']  = ACCEPT_ENCODING
-        req.headers['Accept-Language']  = ACCEPT_LANGUAGE
-        req.headers['Content-Type']     = CONTENT_TYPE
+        req.headers['User-Agent']       = @user_agent
+        req.headers['Referer']          = "#{@end_point}#{@referer}"
+        req.headers['Accept-Encoding']  = @accept_enc
+        req.headers['Accept-Language']  = @accept_lang
+        req.headers['Content-Type']     = @content_type
         req.body = setup_param(param)
       end
     end
 
     def setup_param(param)
-      param.merge(api_verno: API_VER, api_token: @token)
+      param.merge(api_verno: @api_ver, api_token: @token)
+    end
+
+    def setup(opts)
+      DEFAULT_OPTS.merge(opts).each { |key, value| instance_variable_set("@#{key}", value) }
+      self
     end
 
   end

@@ -3,22 +3,27 @@ require File.expand_path(File.join('./', 'spec_helper'), File.dirname(__FILE__))
 
 describe Haruna::Client do
 
+  before do
+    @token = "abcdefg"
+    @end_point = "http://125.6.189.215"
+  end
+
   describe "#new" do
-    context "when token is empty" do
+    context "when token & end_point are empty" do
       it "should raise error" do
         expect{ Haruna::Client.new }.to raise_error(ArgumentError)
       end
     end
 
-    context "when token is NOT empty" do
-      subject { Haruna::Client.new("abcdefg") }
+    context "when token & end_point are NOT empty" do
+      subject { Haruna::Client.new(@token, @end_point) }
       it { should be_an_instance_of Haruna::Client }
     end
   end
 
   describe "client commands" do
     before do
-      @client = Haruna::Client.new("abcdefg")
+      @client = Haruna::Client.new(@token, @end_point)
       @client.conn = create_stub_connection # overwrite faraday adapter
     end
 
@@ -30,7 +35,7 @@ describe Haruna::Client do
       end
       context "w/ two parameters" do
         subject { @client.req_mission_start(1, 1) }
-        its(:body) { should eq "ok" }
+        its(:body) { should start_with "svdata" }
       end
     end
 
@@ -42,7 +47,7 @@ describe Haruna::Client do
       end
       context "w/ two parameters" do
         subject { @client.req_mission_result(1) }
-        its(:body) { should eq "ok" }
+        its(:body) { should start_with "svdata" }
       end
     end
 
@@ -54,14 +59,14 @@ describe Haruna::Client do
       end
       context "w/ two parameters" do
         subject { @client.req_hokyu_charge(1, [1,2,3]) }
-        its(:body) { should eq "ok" }
+        its(:body) { should start_with "svdata" }
       end
     end
 
     describe "#get_member_deck_port" do
       context "w/o parameters" do
         subject { @client.get_member_deck_port }
-        its(:body) { should eq "ok" }
+        its(:body) { should start_with "svdata" }
       end
       context "w/ a parameter" do
         it "should raise an error" do
@@ -74,7 +79,7 @@ describe Haruna::Client do
 
   describe "validators" do
     before do
-      @client = Haruna::Client.new("abcdefg")
+      @client = Haruna::Client.new(@token, @end_point)
     end
 
     describe "#validate_deck_id" do

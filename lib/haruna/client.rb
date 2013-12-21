@@ -2,8 +2,8 @@ module Haruna
 
   class Client < API
 
-    def initialize(token, proxy=nil)
-      super(token, proxy)
+    def initialize(token, end_point, opts={})
+      super(token, end_point, opts)
     end
 
     def req_mission_start(deck_id, mission_id)
@@ -22,9 +22,12 @@ module Haruna
     end
 
     # kind
-    #   1: oil?
-    #   2: bullet?
-    #   3: oil + bullet?
+    #   1: fuel
+    #   2: bullet
+    #   3: fuel + bullet
+    #
+    # TODO
+    # accepts deck_id insted of ship_id_arr
     def req_hokyu_charge(kind, ship_id_arr)
       validate_supply_kind(kind)
       validate_ship_ids(ship_id_arr)
