@@ -18,25 +18,53 @@ Or install it yourself as:
 
 ## Usage
 
-    client = Haruna::Client.new(token)
+```ruby
+client = Haruna::Client.new(token, end_point)
 
-    # to start a mission
-    client.req_mission_start(deck_id, mission_id)
+# start a mission
+client.req_mission_start(deck_id, mission_id)
 
-    # to obtain mission result
-    client.req_mission_result(deck_id)
+# obtain mission result
+client.req_mission_result(deck_id)
 
-    # to refill fuel & bullets
-    client.req_hokyu_charge(kind, ship_id_arr)
+# refill fuel & bullets
+client.req_hokyu_charge(kind, ship_id_arr)
+```
 
-### Parameter
+### Parameters
 
-| Param         | Description    | Constraint |
-| ------------- | -------------- | ---------- |
-| token         | Your API token |            |
-| ship_id       | Ship's id      | 1 ~        |
-| deck_id       | Deck's id      | 1 ~ 4      |
-| kind          | Refill mode - 1: oil, 2: bullets, 3: oil + bullets      | 1 ~ 3 |
+| Param         | Description    | Sample                                     | Constraint |
+| ------------- | -------------- | ------------------------------------------ | ---------- |
+| token         | Your API token | "835d2a8f2ca5fea2463248cc6910af96880fc29e" |            |
+| end_point     | API endpoint   | "http://125.6.189.215"                     |            |
+| ship_id       | Ship's id      | 35                                         | 1          |
+| deck_id       | Deck's id      | 3                                          | 1 ~ 4      |
+| kind          | Refill mode - 1: fuel, 2: bullets, 3: fuel + bullets  | 3   | 1 ~ 3      |
+
+### Configuration
+
+You can configure a `Haruna::Client` by passing it options when it's initialized.
+
+```ruby
+# specify proxy server
+proxy_client = Haruna::Client.new(token, end_point, proxy: "http://127.0.0.1:8888")
+
+# you can modify HTTP request header
+client = Haruna::Client.new(token, end_point, user_agent: "My User Agent", accept_enc: "gzip")
+# or you can rewrite the settings after initialization
+client.user_agent = "Foo Bar"
+```
+
+| Option         | Description       | Default                              | 
+| -------------- | ----------------- | ------------------------------------ | 
+| :proxy         | proxy server path | nil                                  | 
+| :api_ver       | API version       | 1                                    | 
+| :user_agent    | User Agent        |  "Mozilla/5.0 (M..."                 | 
+| :referer       | Referer           |  "/kcs/port.swf?version=1.5.5"       | 
+| :accept_enc    | Accept-Encoding   |  "gzip,deflate,sdch"                 | 
+| :accept_lang   | Accept-Encoding   |  "ja,en-US;q=0.8,en;q=0.6"           | 
+| :content_type  | Content-Type      |  "application/x-www-form-urlencoded" | 
+
 
 
 ## Disclaimer
