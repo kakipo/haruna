@@ -8,7 +8,7 @@ module Haruna
       proxy:          nil,
       api_ver:        1,
       user_agent:     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36',
-      referer:        '/kcs/port.swf?version=1.5.5', # 'http://125.6.189.215/kcs/port.swf?version=1.5.5'
+      referer:        '/kcs/port.swf?version=1.5.6',
       accept_enc:     'gzip,deflate,sdch',
       accept_lang:    'ja,en-US;q=0.8,en;q=0.6',
       content_type:   'application/x-www-form-urlencoded'
