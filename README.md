@@ -63,7 +63,7 @@ client.user_agent = "Foo Bar"
 | :proxy         | Proxy server URL  | nil                                  | 
 | :api_ver       | API version       | 1                                    | 
 | :user_agent    | User Agent        |  "Mozilla/5.0 (M..."                 | 
-| :referer       | Referer           |  "/kcs/port.swf?version=1.5.5"       | 
+| :referer       | Referer           |  "/kcs/port.swf?version=1.5.6"       | 
 | :accept_enc    | Accept-Encoding   |  "gzip,deflate,sdch"                 | 
 | :accept_lang   | Accept-Encoding   |  "ja,en-US;q=0.8,en;q=0.6"           | 
 | :content_type  | Content-Type      |  "application/x-www-form-urlencoded" | 
